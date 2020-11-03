@@ -1,14 +1,14 @@
 #!/bin/bash
 { #variable_section
-    __variable_=""
-    __variable_filename=""
-    __variable_loop_0=""
-    __variable_argument_1="${1}"
+    ln_build_variable_=""
+    ln_build_variable_filename=""
+    ln_build_variable_loop_0=""
+    ln_build_variable_argument_1="${1}"
 }
 
 { #function_section
-    __function() { :; }
-    __function_usage() {
+    ln_build_function() { :; }
+    ln_build_function_usage() {
         echo "usage  :"
         echo "   ${0} [option]"
         echo "option :"
@@ -16,37 +16,37 @@
         echo "   -b --build  : build"
         echo "   -u --update : overwrite (default)"
     }
-    __function_update() {
-        for __variable_loop_0 in $(ls) ; do
-            if [[ ${__variable_loop_0} =~ .*\.sh ]] ; then
-                printf "f_update:${__variable_loop_0}    "
-                __variable_filename=$(echo ${__variable_loop_0} | tr -d ".sh")
-                cp -v ${__variable_filename}.sh exec
-                mv exec/${__variable_filename}.sh exec/${__variable_filename}
-                chmod +x exec/${__variable_filename}
+    ln_build_function_update() {
+        for ln_build_variable_loop_0 in $(ls) ; do
+            if [[ ${ln_build_variable_loop_0} =~ .*\.sh ]] ; then
+                printf "f_update:${ln_build_variable_loop_0}    "
+                ln_build_variable_filename=$(echo ${ln_build_variable_loop_0} | tr -d ".sh")
+                cp -v ${ln_build_variable_filename}.sh exec
+                mv exec/${ln_build_variable_filename}.sh exec/${ln_build_variable_filename}
+                chmod +x exec/${ln_build_variable_filename}
             fi
         done
     }
-    __function_build() {
+    ln_build_function_build() {
         : ; echo "ignored"
     }
 }
 
-function __main() {
+function ln_build_main() {
     cd `dirname $0`
     mkdir exec > /dev/null 2>&1
-    if [ -z "${__variable_argument_1}" ] ; then
-        __function_build
+    if [ -z "${ln_build_variable_argument_1}" ] ; then
+        ln_build_function_build
     else
-        case ${__variable_argument_1} in
-            "-h" | "--help" ) __function_usage ;;
-            "-u" | "--update" ) __function_update ;;
-            "-b" | "--build" ) __function_build ;;
-            [-]* ) echo "unknown option: ${__variable_argument_1}" ;;
+        case ${ln_build_variable_argument_1} in
+            "-h" | "--help" ) ln_build_function_usage ;;
+            "-u" | "--update" ) ln_build_function_update ;;
+            "-b" | "--build" ) ln_build_function_build ;;
+            [-]* ) echo "unknown option: ${ln_build_variable_argument_1}" ;;
             * ) echo "e: this is not option" ;;
         esac
     fi
 }
-__main
-unset __variable_ __variable_loop_0 __variable_filename __variable_argument_1
-unset __function __function_build __function_usage __function_update __main
+ln_build_main
+unset ln_build_variable_ ln_build_variable_loop_0 ln_build_variable_filename ln_build_variable_argument_1
+unset ln_build_function ln_build_function_build ln_build_function_usage ln_build_function_update ln_build_main

@@ -1,4 +1,3 @@
-
 #!/bin/bash
 { #variable_section
     __variable_="" #dummy
