@@ -48,3 +48,5 @@ function __main() {
     fi
 }
 __main
+unset __variable_ __variable_loop_0 __variable_filename __variable_argument_1
+unset __function __function_build __function_usage __function_update __main
