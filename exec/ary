@@ -35,3 +35,4 @@ function ln_ary_main() {
     esac
 }
 ln_ary_main
+unset ln_ary_variable_ ln_ary_variable_argument_1 ln_ary_variable_argument_2 ln_ary_function ln_ary_function_usage ln_ary_main
