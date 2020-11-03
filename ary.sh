@@ -18,7 +18,7 @@
 function ln_ary_main() {
     case ${ln_ary_variable_argument_1} in
         "-h" | "--help" ) ln_ary_function_usage ;;
-        [0-9]* )
+        [0-9A-F]* )
         if [ -z "${ln_ary_variable_argument_2}" ] ; then
             ln_ary_variable_argument_2=10
         fi
