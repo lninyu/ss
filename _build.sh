@@ -20,7 +20,7 @@
         for ln_build_variable_loop_0 in $(ls) ; do
             if [[ ${ln_build_variable_loop_0} =~ .*\.sh ]] ; then
                 printf "f_update:${ln_build_variable_loop_0}    "
-                ln_build_variable_filename=$(echo ${ln_build_variable_loop_0} | tr -d ".sh")
+                ln_build_variable_filename=$(echo ${ln_build_variable_loop_0} | sed -e 's/.sh//g')
                 cp -v ${ln_build_variable_filename}.sh exec
                 mv exec/${ln_build_variable_filename}.sh exec/${ln_build_variable_filename}
                 chmod +x exec/${ln_build_variable_filename}
