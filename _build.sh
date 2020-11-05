@@ -19,7 +19,7 @@
     ln_build_function_update() {
         for ln_build_variable_loop_0 in $(ls) ; do
             if [[ ${ln_build_variable_loop_0} =~ .*\.sh ]] ; then
-                printf "f_update:${ln_build_variable_loop_0}    "
+                printf "${ln_build_variable_loop_0}    "
                 ln_build_variable_filename=$(echo ${ln_build_variable_loop_0} | sed -e 's/.sh//g')
                 cp -v ${ln_build_variable_filename}.sh exec
                 mv exec/${ln_build_variable_filename}.sh exec/${ln_build_variable_filename}
@@ -33,6 +33,7 @@
 }
 
 function ln_build_main() {
+    echo "update:$(date "+%Y/%d/%m/%H:%M:%S")"
     cd `dirname $0`
     mkdir exec > /dev/null 2>&1
     if [ -z "${ln_build_variable_argument_1}" ] ; then

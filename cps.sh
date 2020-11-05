@@ -3,10 +3,11 @@
     __variable_="" #dummy
     __variable_argument_1="${1}"
     __variable_argument_2="${2}"
+    __variable_filedata=""
 }
 
 { #function_section
-    __function() { :; } #dummy
+    __function_() { :; } #dummy
     __function_usage() {
         echo "usage  :"
         echo "   ${0} [option]"
@@ -27,25 +28,31 @@
         if [[ -z ${1} ]] ; then
             echo "file empty"
         elif [[ ${1} =~ .*\.cps ]] ; then
-            echo "cant decrypt this file"
-        else
             echo "decrypting:${1}"
             __function_decrypt_process "${1}"
+        else
+            echo "cant decrypt this file"
         fi
     }
     __function_encrypt_process(){
-        echo "obase=2;ibase=16;$(od -An ${1} | tr -d "\n ")" | bc | tr -d "\n\\" > "${1}".cps
-        #二進数のデータにできるようにはした / echo "o ~ -d "\n\\"
-        #factorがないので詰み
-        #一応ファイルに書き出しするようにはしてる / > ${1}.cps
-        #つかいものにならないfactorくんはしのうねふぁっきん
+        echo ${1}
+        __variable_filedata=$(echo "obase=16;ibase=8;$(od -An ${1} | tr -d "\n ")" | bc | tr -d "\n\\")
+        echo ${#__variable_filedata}
+        echo $(od -An ${1})
+        for (( i = 0; i < 10; i++ )); do
+            :
+        done
+        #odじゃなくてxxd使ったらいいかも
+        echo ${__variable_filedata} > ${1}.cps
     }
     __function_decrypt_process(){
-        :
+        echo "obase=8;ibase=16;$(od -An ${1} | tr -d "\n ")" | bc | tr -d "\n\\"
     }
 }
 
 function __main() {
+    #cd `dirname "$0"`
+    pwd
     if [[ ${__variable_argument_1} =~ -[a-zA-Z0-9]+ ]] ; then
         echo "debug:sec_option"
         case ${__variable_argument_1} in
