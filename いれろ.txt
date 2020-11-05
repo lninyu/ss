@@ -1,0 +1,14 @@
+factor
+nkf
+tree
+emacs
+pv (pipe viewer)
+showkey
+ccze
+shuf
+tac (revと同じ?)
+cowsay
+#coreutils
+#moreutils
+MeCab (mecab mecab-ipadic)
+echo-sd
